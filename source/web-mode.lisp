@@ -48,11 +48,9 @@ search.")
        "M-g" 'follow-hint-new-buffer-focus
        "C-u M-g" 'follow-hint-new-buffer
        "C-x C-w" 'copy-hint-url
-       ;; We bind C-y to paste to override the built-in GTK binding
-       "C-y" 'paste
-       "C-v" 'paste
-       "shift-insert" 'paste
-       "button2" 'paste-or-set-url
+       #+renderer-gtk "C-v" #+renderer-gtk 'paste
+       #+renderer-gtk "shift-insert" #+renderer-gtk 'paste
+       #+renderer-gtk "button2" #+renderer-gtk 'paste-or-set-url
        "C-c" 'copy
        "button9" 'history-forwards
        "button8" 'history-backwards
@@ -90,7 +88,6 @@ search.")
        "keypadnext" 'scroll-page-down
        "keypadpageup" 'scroll-page-up
        "keypadprior" 'scroll-page-up)
-
       scheme:emacs
       (list
        "C-M-f" 'history-forwards-all-query
@@ -139,15 +136,15 @@ search.")
        "; f" 'follow-hint-new-buffer
        "button9" 'history-forwards
        "button8" 'history-backwards
-       "C-v" 'paste
-       "shift-insert" 'paste
+       #+renderer-gtk "C-v" #+renderer-gtk 'paste
+       #+renderer-gtk "shift-insert" #+renderer-gtk 'paste
        "+" 'zoom-in-page
        "hyphen" 'zoom-out-page
        "0" 'unzoom-page
        "z i" 'zoom-in-page
        "z o" 'zoom-out-page
        "z z" 'unzoom-page
-       "g h" 'jump-to-heading ; REVIEW: VI binding?  "gh" is probably good enough.
+       "g h" 'jump-to-heading
        "/" 'search-buffer
        "?" 'remove-search-hints
        "m f" 'bookmark-hint
@@ -162,12 +159,7 @@ search.")
        "space" 'scroll-page-down
        "s-space" 'scroll-page-up
        "pageup" 'scroll-page-up
-       "pagedown" 'scroll-page-down))))
-  ;; Init.
-  ;; TODO: Do we need to set the default URL?  Maybe not.
-  ;; (buffer-load (default-new-buffer-url (buffer %mode))
-  ;;                 (buffer %mode))
-  )
+       "pagedown" 'scroll-page-down)))))
 
 (sera:export-always '%clicked-in-input?)
 (define-parenscript %clicked-in-input? ()
